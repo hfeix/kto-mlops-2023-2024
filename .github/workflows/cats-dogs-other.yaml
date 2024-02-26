@@ -15,6 +15,7 @@ jobs:
           python-version: 3.11
       - name: Upgrade pip, install packages and run unittests
         run: |
+          echo coucou
           pip install --upgrade pip
           ./init_packages.sh
           pip install -r ./cats_dogs_other/requirements.txt
@@ -37,7 +38,7 @@ jobs:
           curl -X POST ${{vars.DAILYCLEAN_ROUTE}}/pods/start
       - name: Build training image
         run: |
-          docker build -f cats_dogs_other/train/Dockerfile -t quay.io/gthomas59800/kto/train/cats-dogs-other-2023-2024:latest --build-arg MLFLOW_S3_ENDPOINT_URL=${{vars.MLFLOW_S3_ENDPOINT_URL}} --build-arg AWS_ACCESS_KEY_ID=${{vars.AWS_ACCESS_KEY_ID}} --build-arg AWS_SECRET_ACCESS_KEY=${{secrets.AWS_SECRET_ACCESS_KEY}} .
+          docker build -f cats_dogs_other/train/Dockerfile -t quay.io/hfeix3011/kto/train/cats-dogs-other-2023-2024:latest --build-arg MLFLOW_S3_ENDPOINT_URL=${{vars.MLFLOW_S3_ENDPOINT_URL}} --build-arg AWS_ACCESS_KEY_ID=${{vars.AWS_ACCESS_KEY_ID}} --build-arg AWS_SECRET_ACCESS_KEY=${{secrets.AWS_SECRET_ACCESS_KEY}} .
       - name: Launch mlflow training in Openshift
         run: |
           export KUBE_MLFLOW_TRACKING_URI="${{vars.MLFLOW_TRACKING_URI}}"
