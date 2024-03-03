@@ -21,8 +21,8 @@ args = parser.parse_args()
 split_ratio_train = args.split_ratio_train
 split_ratio_evaluate = args.split_ratio_evaluate
 split_ratio_test = args.split_ratio_test
-batch_size = args.batch_size
-epochs = args.epochs
+batch_size = os.environ.get("BATCH_SIZE")
+epochs = os.environ.get("EPOCHS")
 working_dir = args.working_dir
 
 if __name__ == "__main__":

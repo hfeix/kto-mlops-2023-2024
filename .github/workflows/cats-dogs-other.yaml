@@ -6,6 +6,8 @@ on:
 
 jobs:
   train:
+    batch_size: ${{ vars.BATCH_SIZE }}
+    epochs: ${{ vars.EPOCHS }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
